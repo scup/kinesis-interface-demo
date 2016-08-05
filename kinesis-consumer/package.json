@@ -1,0 +1,9 @@
+{
+  "name": "kinesis-consumer",
+  "version": "0.1.0",
+  "description": "Sample kinesis data consumer",
+  "main": "consumer.js",
+  "scripts": {
+    "start": "node consumer.js"
+  }
+}

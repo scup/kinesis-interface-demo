@@ -1,0 +1,12 @@
+{
+  "name": "kinesis-generator",
+  "version": "0.1.0",
+  "description": "Sample kinesis data generator",
+  "main": "generator.js",
+  "scripts": {
+    "start": "node generator.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.4.10"
+  }
+}

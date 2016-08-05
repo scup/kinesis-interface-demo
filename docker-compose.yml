@@ -1,0 +1,34 @@
+generator:
+  image: node
+  command: "bash -c 'npm install && npm start'"
+  working_dir: /project
+  volumes:
+    - ./kinesis-generator:/project
+  environment:
+    AWS_REGION: 'kinesis_region'
+    AWS_ACCESS_KEY_ID: 'my_aws_accesskey'
+    AWS_SECRET_ACCESS_KEY: 'my_aws_secretaccesskey'
+    STREAM_NAME: 'MyKinesisStream'
+
+consumer:
+  image: node
+  command: "bash -c 'npm start'"
+  working_dir: /project
+  volumes:
+    - ./kinesis-consumer:/project
+
+kinesis-interface:
+  build: "./kinesis-interface"
+  command: "bash -c 'sh install-kinesis-interface.sh && ./kinesis-interface/node_modules/aws-kcl/bin/kcl-bootstrap --properties example-app.properties -e -j /usr/bin/java'"
+  working_dir: /project
+  volumes:
+    - ./kinesis-interface:/project
+  environment:
+    AWS_REGION: 'kinesis_region'
+    AWS_ACCESS_KEY_ID: 'my_aws_accesskey'
+    AWS_SECRET_ACCESS_KEY: 'my_aws_secretaccesskey'
+    DESTINATION_URL: 'http://consumer/logger'
+    LOGGER_FILE: log_file.log
+  links:
+    - generator
+    - consumer
