@@ -1,5 +1,7 @@
 # Kinesis Interface demo
 
+DEPRECATED: instead using KCL, now we are using AWS Lambda to consume Kinesis data.
+
 This is a sample environment developed with Docker and Node.js to show how the [Kinesis Interface](https://github.com/scup/kinesis-interface) works.
 
 To execute this demo execute the following steps:
